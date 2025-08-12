@@ -1,0 +1,15 @@
+{
+  "id": "Chroma",
+  "name": "Chroma",
+  "version": "2.9.3-1.40.8",
+  "description": "Chroma port patched for Beat Saber 1.40.8 (Quest)",
+  "author": "patched-by-chatgpt",
+  "dependencies": [
+    { "id": "CustomJSONData", "version": "*" },
+    { "id": "NoodleExtensions", "version": "*" },
+    { "id": "SiraUtil", "version": "*" }
+  ],
+  "package_name": "Chroma",
+  "target": "Quest",
+  "game_version": "1.40.8"
+}
