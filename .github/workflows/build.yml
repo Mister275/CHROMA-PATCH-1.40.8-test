@@ -1,23 +1,22 @@
-name: Build Chroma for 1.40.8
+- name: Setup .NET
+  uses: actions/setup-dotnet@v3
+  with:
+    dotnet-version: '6.0.x'
 
-on:
-  workflow_dispatch:
+- name: Download public 1.40.8 IL2CPP dump
+  run: |
+    mkdir -p libs
+    curl -L https://github.com/sc2ad/QuestPackageMirror/releases/download/1.40.8/BeatSaber-1.40.8-IL2CPP-Dump.zip -o dump.zip
+    unzip dump.zip -d dump
+    cp dump/Assembly-CSharp.dll libs/
+    cp dump/UnityEngine.dll libs/
+    cp dump/UnityEngine.CoreModule.dll libs/
 
-jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '6.0.x'
-      - name: Run build script
-        shell: pwsh
-        run: |
-          .\build.ps1
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Chroma-built
-          path: output/Chroma.dll
+- name: Download Harmony
+  run: |
+    mkdir -p libs
+    curl -L https://github.com/pardeike/Harmony/releases/download/v2.3.7.0/0Harmony.dll -o libs/0Harmony.dll
+
+- name: Build Chroma
+  run: |
+    dotnet build Chroma.sln -c Release
