@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>Chroma</AssemblyName>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>../libs/Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>../libs/Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Patches/**/*.cs" />
+  </ItemGroup>
+</Project>
